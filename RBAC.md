@@ -1,69 +1,114 @@
-# Kubernetes HPA (Horizontal Pod Autoscaler) – Interview Notes
+# Kubernetes RBAC Interview Notes
 
-## What is HPA?
+## RBAC
 
-HPA (Horizontal Pod Autoscaler) is a Kubernetes feature that automatically increases or decreases the number of pods based on CPU, Memory, or custom metrics.
+Role --> Which resource & What action.
+RoleBinding --> Role (pod resource) & whom user (developer1).
 
-### Example
-- If CPU utilization exceeds 70%, HPA automatically creates additional pods.
-- When utilization decreases, HPA removes unnecessary pods.
-- This helps maintain application performance and optimize resource utilization.
+RBAC stands for Role-Based Access Control used to control who can access cluster resources and what actions they can perform.
 
----
+If any requirement comes from development side, they want to view the access of pods and deployments.
 
-## How Did You Implement HPA in AWS EKS?
+So, we use RBAC.
 
-1. Installed Metrics Server.
-2. Configured CPU and Memory requests and limits in the Deployment.
-3. Created an HPA resource with minReplicas, maxReplicas, and utilization thresholds.
-4. Verified scaling using:
+In RBAC, we define Role or ClusterRole & RoleBinding or ClusterRoleBinding.
 
-```bash
-kubectl get hpa
-kubectl describe hpa
-kubectl top pods
-```
+In Role, we configure which resources can be accessed and what actions can be performed. In RoleBinding, we map the Role to users or service accounts.
 
----
+## Allow access to Pods and Services
 
-## Short Interview Answer (1 Minute)
+Permissions: apiGroups: [""]
 
-HPA is used to automatically scale pods in Kubernetes based on CPU, Memory, or custom metrics.
+- Get --> View a specific pod/service
+- List --> View all pods/services
+- Watch --> Continuously monitor changes
 
-In EKS, I installed Metrics Server, configured resource requests and limits in the Deployment, and created an HPA manifest with minReplicas, maxReplicas, and utilization thresholds.
+## Allow access to Deployments
 
-When application load increased, HPA automatically created more pods, and when the load decreased, it scaled them down.
+Permissions: apiGroups: ["apps"]
 
----
+- Get --> View a deployment
+- List --> View all deployments
+- Watch --> Monitor deployment changes
 
-## Why Do We Need Resource Requests?
+## Create a Role
 
-HPA calculates CPU and Memory utilization based on the resource requests defined in the Deployment.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: ecgcbackend
+  name: developer-role
 
-Without resource requests, Kubernetes cannot accurately calculate utilization percentages, and HPA may not work correctly.
+rules:
+- apiGroups: [""]
+  resources: ["pods","services"]
+  verbs: ["get","list","watch"]
 
----
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["get","list","watch"]
 
-## Real-Time Production Example
+kubectl apply -f role.yaml
 
-Normally the application runs with 2 pods.
+## Create a RoleBinding
 
-During peak traffic:
-- CPU utilization exceeds 70%
-- HPA scales from 2 pods to 4 or 5 pods
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: developer-binding
+  namespace: ecgcbackend
 
-When traffic decreases:
-- HPA scales back to 2 pods
+subjects:
+- kind: User
+  name: developer1
 
-Benefits:
-- High Availability
-- Better Performance
-- Efficient Resource Utilization
+roleRef:
+  kind: Role
+  name: developer-role
+  apiGroup: rbac.authorization.k8s.io
 
----
+## Cluster-Wide Access
 
-## Important Interview Point
+If you want access across all namespaces, use ClusterRole and ClusterRoleBinding.
 
-- HPA scales Pods.
-- Karpenter or Cluster Autoscaler scales Nodes.
-- Metrics Server is required for HPA.
+## ClusterRole
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: readonly-role
+
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get","list","watch"]
+
+## ClusterRoleBinding
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: readonly-binding
+
+subjects:
+- kind: User
+  name: developer1
+
+roleRef:
+  kind: ClusterRole
+  name: readonly-role
+  apiGroup: rbac.authorization.k8s.io
+
+## Difference Between Role, RoleBinding, ClusterRole and ClusterRoleBinding
+
+If we want to give access only within a specific namespace, we use Role and RoleBinding.
+
+If we want to give access across all namespaces in the cluster, we use ClusterRole and ClusterRoleBinding.
+
+## Create a Service Account
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: jenkins-sa
+  namespace: dev
