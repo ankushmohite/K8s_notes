@@ -13,7 +13,8 @@ So, we use RBAC.
 
 In RBAC, we define Role or ClusterRole & RoleBinding or ClusterRoleBinding.
 
-In Role, we configure which resources can be accessed and what actions can be performed. In RoleBinding, we map the Role to users or service accounts.
+In role, we configure Which resources & What actions they can perform & in RoleBinding
+we map the Role to users, service accounts.
 
 ## Allow access to Pods and Services
 
