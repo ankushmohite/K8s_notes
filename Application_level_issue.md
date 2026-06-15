@@ -39,3 +39,47 @@ I work closely with developers to resolve application-related issues.
 so sometimes ArgoCD does not show service INFO logs, so, at that time we check logback-spring.xml file for INFO Level logs entry putted or not.
 
 If not, then we will add and then restart pod.
+
+
+
+# 1. Diff. between Satic pod and dynamic pods?
+
+Static pods manage by kubelet, such as:
+
+* apiserver
+* schedular
+* controller-manager
+
+dynamic pods are manage by kubernetes API such as:
+
+* deployment
+* replicaset
+* statefulset
+
+# 2.How to add new node in k8s?
+
+frist, i generate a join command from the kubernetes master using kubeadm token create.
+
+Then i prepare the new node by installing containerd, kubeadm & kubelet.
+
+After that i execute the join command on the new node. then verify using kubectl get node.
+
+```bash
+yum install containerd -y
+yum install kubeadm kubectl kubelet
+```
+
+# 3. Drain & Cordon.
+
+When you drain a node, kubernetessafely remove all pods from a node.
+
+```bash
+kubectl drain node_name
+```
+
+when you cordan a node, kubernetes stop scheduling a new pods on that node but existing pods keep running.
+
+```bash
+kubectl cordon node_name
+```
+
