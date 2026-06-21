@@ -1,3 +1,21 @@
+# Kubernetes Network Policy Interview Answer
+
+## What is Network Policy in Kubernetes?
+
+Basically, Network Policy is used to control pod-to-pod and namespace-to-namespace communication.
+
+By default, every pod can communicate with every other pod in the cluster. So, network Policies help to restrict that communication and allow only the required traffic.
+
+We use Network Policies to improve security and provide traffic isolation by controlling which pods or namespaces can send or receive traffic.
+
+## Real-Time Example
+
+For example, if we have a Frontend–Backend–Database architecture, we allow communication from Frontend to Backend and from Backend to Database, but we block direct access from Frontend to Database.
+
+This improves security and provides traffic isolation by allowing only the required traffic.
+
+
+
 # Kubernetes Network Policy Implementation (Ingress Only)
 
 ## Objective
