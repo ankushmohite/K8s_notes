@@ -83,3 +83,6 @@ when you cordan a node, kubernetes stop scheduling a new pods on that node but e
 kubectl cordon node_name
 ```
 
+
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/619f2521-6d5f-49d9-a4fe-26e8bb2d3b76" />
+
