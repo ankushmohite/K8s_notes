@@ -55,3 +55,6 @@ We use labels to identify and organize resources.
 ## 2. Selectors:
 
 Selectors are used to find Pods based on their labels.
+
+
+##1. Pod: Pod is the smallest deployable unit in Kubernetes in which the container are running.
