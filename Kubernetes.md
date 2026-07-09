@@ -58,3 +58,17 @@ Selectors are used to find Pods based on their labels.
 
 
 ##1. Pod: Pod is the smallest deployable unit in Kubernetes in which the container are running.
+
+
+
+## Deployment
+
+Deployment is used to deploy and manage your applications. It creates and manages ReplicaSets and also supports rolling updates and rollbacks.
+
+## ReplicaSet
+
+ReplicaSet ensures that the required number of Pods are always running. If a Pod is deleted, a new Pod is automatically created to maintain the desired number of replicas. ReplicaSet also provides an advanced version of labels and selectors called **Set-Based Selectors**, which can match multiple values using different operators.
+
+## ReplicationController
+
+ReplicationController is the older version of ReplicaSet. It maintains the desired number of Pods but supports only simple label selectors (Equality-Based Selectors).
