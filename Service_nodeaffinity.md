@@ -37,7 +37,7 @@ IgnoredDuringExecution = Once the pod is running, Kubernetes won't move it even 
 
 nodeSelector: If you want to schedule pod on a specific node based on the specific label.
 
-##### What are the diff. between nodeSelector and nodeAffinity #####
+## Diff. between nodeSelector and nodeAffinity.
 
 nodeSelector: We can schedule a Pod on single label.
 Node Affinity: We can schedule a Pod on large or medium nodes or prevent pod on small nodes using In and NotIn.
