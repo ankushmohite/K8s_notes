@@ -59,35 +59,93 @@ HPA uses these metrics to automatically scale applications based on resource con
 
 ## Deployment Configuration
 
+# Deployment - `erp-hrd-emp-mgmt-be`
+
 ```yaml
+---
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
-  name: my-app
+  name: erp-hrd-emp-mgmt-be
+  namespace: ecgcbackend
+
+  labels:
+    app: erp-hrd-emp-mgmt-be-app
+
 spec:
   replicas: 1
+
   selector:
     matchLabels:
-      app: my-app
+      app: erp-hrd-emp-mgmt-be-app
+      tier: backend
+
+  strategy:
+    type: RollingUpdate
+
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+
+  revisionHistoryLimit: 1
+
   template:
     metadata:
       labels:
-        app: my-app
+        app: erp-hrd-emp-mgmt-be-app
+        tier: backend
+
+      name: erp-hrd-emp-mgmt-be
+
     spec:
       containers:
-      - name: my-app
-        image: nginx
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "128Mi"
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
-```
+        - image: docker-stg.ecgcindia.com:443/erp-hrd-emp-mgmt-be.jar:R1.0.131_38
+          name: erp-hrd-emp-mgmt-be-container
+          imagePullPolicy: Always
 
-```bash
-kubectl apply -f deployment.yaml
+          ports:
+            - containerPort: 11109
+
+          readinessProbe:
+            tcpSocket:
+              port: 11109
+            initialDelaySeconds: 30
+            periodSeconds: 15
+
+          livenessProbe:
+            tcpSocket:
+              port: 11109
+            initialDelaySeconds: 60
+            periodSeconds: 15
+            failureThreshold: 5
+            timeoutSeconds: 5
+
+#         resources:
+#           requests:
+#             memory: "64Mi"
+#             cpu: "250m"
+#           limits:
+#             memory: "128Mi"
+#             cpu: "500m"
+
+#         ports:
+#           - containerPort: 80
+
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "pre-prod"
+
+#     nodeSelector:
+#       size: medium
+
+            - name: TZ
+              value: Asia/Kolkata
+
+      dnsConfig:
+        searches:
+          - ecgc.svc.cluster.local
+          - ecgcbackend.svc.cluster.local
 ```
 
 ## Create HPA
