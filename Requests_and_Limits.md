@@ -8,7 +8,7 @@ It is the minimum CPU and Memory required by a Pod. Kubernetes uses this value t
 ## Limit:
 It is the maximum CPU and Memory a Pod is allowed to use.
 
-###################################################################################
+
 If a Pod exceeds the CPU limit, then Kubernetes throttles (slows down).
 
 If a Pod exceeds the Memory limit, then Kubernetes killed the container.
