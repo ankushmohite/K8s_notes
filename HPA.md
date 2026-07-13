@@ -121,12 +121,8 @@ spec:
         target:
           type: Utilization
           averageUtilization: 80
-```
 
-```bash
-kubectl apply -f hpa.yaml
-```
-
+          
 ## Watch HPA Scaling
 
 ```bash
