@@ -92,6 +92,9 @@ kubectl apply -f deployment.yaml
 
 ## Create HPA
 
+# Horizontal Pod Autoscaler (HPA) - CPU and Memory
+
+```yaml
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -121,6 +124,7 @@ spec:
         target:
           type: Utilization
           averageUtilization: 80
+```
 
           
 ## Watch HPA Scaling
