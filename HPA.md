@@ -92,25 +92,35 @@ kubectl apply -f deployment.yaml
 
 ## Create HPA
 
-```yaml
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: my-app-hpa
+  name: erp-hrd-emp-mgmt-be-hpa
+  namespace: ecgcbackend
+
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: my-app
-  minReplicas: 1
-  maxReplicas: 5
+    name: erp-hrd-emp-mgmt-be
+
+  minReplicas: 2
+  maxReplicas: 10
+
   metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 70
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
 ```
 
 ```bash
