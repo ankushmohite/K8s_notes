@@ -10,7 +10,7 @@ We have setup a jenkin server.
 
 so, by using jenkin, we take a code from github & build it, package it & push it to the artifactory then we deploy it.
 
-my most of the gose in getting the new jira tickets, In that tickets the developer and QA team members they assign me the taks, where i get to know, if there is bug, if there is feature request, if there is pipeline request i.e one side of my day.
+my most of the day gose in getting the new jira tickets, In that tickets the developer and QA team members they assign me the taks, where i get to know, if there is bug, if there is feature request, if there is pipeline request i.e one side of my day.
 
 Apart from that i am engaged in project where i am working into the development of manifest file, manifest file for kubernetes.
 
