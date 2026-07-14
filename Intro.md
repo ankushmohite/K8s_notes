@@ -2,7 +2,7 @@
 
 As a Devops Engineer my day to day activity varies form colabration with developer and QA team members.
 
-So, my most of the gose in desiging and maintening a CI/CD pipeline.
+So, my most of the day gose in getting desiging and maintening a CI/CD pipeline.
 
 the project which iam working in entirely a code base is on github and deployed on server.
 
