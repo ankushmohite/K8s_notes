@@ -39,7 +39,7 @@ kubectl is a command line tool that allow user to communicate with cluster.
 #################Worker###############
 
 ## 1. Kubelet
-Kubelet is an agent that runs on every Worker Node. It's monitoring the status of pods an Communicate with the API Server.
+Kubelet is an agent that runs on every Worker Node. it's Communicates with the API Server an manages the pods
 
 ## 2. Kube Proxy:
 Kube Proxy manages networking inside the cluster.
