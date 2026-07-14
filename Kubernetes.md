@@ -63,7 +63,7 @@ Selectors are used to find Pods based on their labels.
 
 ## Deployment
 
-Deployment is used to deploy and manage your applications. It creates and manages ReplicaSets and also supports rolling updates and rollbacks.
+Deployment is used to deploy and manage your applications. It will creates and manages ReplicaSets and also supports rolling updates and rollbacks.
 
 ## ReplicaSet
 
