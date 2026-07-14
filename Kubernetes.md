@@ -71,4 +71,4 @@ ReplicaSet ensures that the required number of Pods are always running. If a Pod
 
 ## ReplicationController
 
-ReplicationController is the older version of ReplicaSet. It maintains the desired number of Pods but supports only simple label selectors (Equality-Based Selectors).
+ReplicationController is the older version of ReplicaSet. It ensures that the desired number of Pods are always running, but it supports only simple (equality-based) label selectors.
