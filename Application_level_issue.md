@@ -4,7 +4,7 @@
 
 ### What is CrashLoopBackOff?
 
-CrashLoopBackOff means the pod starts successfully but crashes immediately, and Kubernetes continuously tries to restart it.
+CrashLoopBackOff means pod starts successfully but crashes immediately, and Kubernetes continuously tries to restart it.
 
 So, that time we check a pod status, logs, and events using kubectl commands.
 
