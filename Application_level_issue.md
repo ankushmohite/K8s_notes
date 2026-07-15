@@ -68,7 +68,7 @@ yum install kubeadm kubectl kubelet
 
 # 3. Drain & Cordon.
 
-When you drain a node, kubernetessafely remove all pods from a node.
+When you drain a node, kubernetes safely remove all pods from a node.
 
 ```bash
 kubectl drain node_name
