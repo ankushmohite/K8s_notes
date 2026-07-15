@@ -6,7 +6,7 @@
 
 CrashLoopBackOff means pod starts successfully but crashes immediately, and Kubernetes continuously tries to restart it.
 
-So, that time we check a pod status, logs, and events using kubectl commands.
+So, at that time we check a pod status, logs, and events using kubectl commands.
 
 And also one of the reason for CrashLoopBackOff is like sometimes services need to  add some configurations. so, we communicate with developer team and add required changes. After updating the configuration, we restart the pod and verify the application.
 
