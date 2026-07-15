@@ -36,10 +36,7 @@ I usually check resource availability, node selectors, taints, tolerations, and 
 
 I work closely with developers to resolve application-related issues.
 
-so, sometimes ArgoCD does not show service INFO logs, so, at that time we check logback-spring.xml file for INFO Level logs entry putted or not.
-
-If not, then we will add and then restart pod.
-
+Sometimes ArgoCD does not show INFO logs.We check the logback-spring.xml file to verify if INFO-level logging is configured. If it's missing, we add the entry and restart the pod.
 
 
 # 1. Diff. between Satic pod and dynamic pods?
