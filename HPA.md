@@ -61,6 +61,7 @@ HPA uses these metrics to automatically scale applications based on resource con
 
 # Deployment - `erp-polc-claims-be`
 
+```yaml
 ---
 
 apiVersion: v1
@@ -93,7 +94,7 @@ spec:
 
       targetPort: 11065           #Pod port
 
-      nodePort: 31832       #If type is NodePort then use nodePort  
+      nodePort: 31832       #If type is NodePort then use nodePort
 
 ---
 
@@ -109,7 +110,7 @@ metadata:
 
   labels:
 
-    app: erp-polc-claims-be-app  
+    app: erp-polc-claims-be-app
 
 spec:
 
@@ -155,7 +156,7 @@ spec:
 
 #              memory: "128Mi"
 
-#              cpu: "500m"               
+#              cpu: "500m"
 
 #          ports:
 
@@ -182,6 +183,7 @@ spec:
           - ecgc.svc.cluster.local
 
           - ecgcbackenderp.svc.cluster.local
+```
 
 ## Create HPA
 
