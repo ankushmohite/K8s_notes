@@ -59,94 +59,129 @@ HPA uses these metrics to automatically scale applications based on resource con
 
 ## Deployment Configuration
 
-# Deployment - `erp-hrd-emp-mgmt-be`
+# Deployment - `erp-polc-claims-be`
 
-```yaml
 ---
+
+apiVersion: v1
+
+kind: Service
+
+metadata:
+
+  namespace: ecgcbackenderp
+
+  name: erp-polc-claims-be
+
+  labels:
+
+    app: erp-polc-claims-be-app
+
+spec:
+
+  selector:
+
+    app: erp-polc-claims-be-app
+
+    tier: backend
+
+  type: NodePort
+
+  ports:
+
+    - port: 11065                #container port
+
+      targetPort: 11065           #Pod port
+
+      nodePort: 31832       #If type is NodePort then use nodePort  
+
+---
+
 apiVersion: apps/v1
+
 kind: Deployment
 
 metadata:
-  name: erp-hrd-emp-mgmt-be
-  namespace: ecgcbackend
+
+  name: erp-polc-claims-be
+
+  namespace: ecgcbackenderp
 
   labels:
-    app: erp-hrd-emp-mgmt-be-app
+
+    app: erp-polc-claims-be-app  
 
 spec:
-  replicas: 1
+
+  replicas: 2
 
   selector:
+
     matchLabels:
-      app: erp-hrd-emp-mgmt-be-app
+
+      app: erp-polc-claims-be-app
+
       tier: backend
 
-  strategy:
-    type: RollingUpdate
-
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
-
-  revisionHistoryLimit: 1
-
   template:
+
     metadata:
+
       labels:
-        app: erp-hrd-emp-mgmt-be-app
+
+        app: erp-polc-claims-be-app
+
         tier: backend
 
-      name: erp-hrd-emp-mgmt-be
+      name: erp-polc-claims-be
 
     spec:
+
       containers:
-        - image: docker-stg.ecgcindia.com:443/erp-hrd-emp-mgmt-be.jar:R1.0.131_38
-          name: erp-hrd-emp-mgmt-be-container
-          imagePullPolicy: Always
 
-          ports:
-            - containerPort: 11109
+        - image: docker-prod.ecgcindia.com:443/erp-polc-claims-be.jar:R1.0.208_91
 
-          readinessProbe:
-            tcpSocket:
-              port: 11109
-            initialDelaySeconds: 30
-            periodSeconds: 15
+          name: erp-polc-claims-be-container
 
-          livenessProbe:
-            tcpSocket:
-              port: 11109
-            initialDelaySeconds: 60
-            periodSeconds: 15
-            failureThreshold: 5
-            timeoutSeconds: 5
+#          resources:
 
-#         resources:
-#           requests:
-#             memory: "64Mi"
-#             cpu: "250m"
-#           limits:
-#             memory: "128Mi"
-#             cpu: "500m"
+#            requests:
 
-#         ports:
+#              memory: "64Mi"
+
+#              cpu: "250m"
+
+#            limits:
+
+#              memory: "128Mi"
+
+#              cpu: "500m"               
+
+#          ports:
+
 #           - containerPort: 80
 
           env:
-            - name: SPRING_PROFILES_ACTIVE
-              value: "pre-prod"
 
-#     nodeSelector:
-#       size: medium
+          - name: SPRING_PROFILES_ACTIVE
 
-            - name: TZ
-              value: Asia/Kolkata
+            value: "prod"
+
+          - name: TZ
+
+            value: Asia/Kolkata
+
+#      nodeSelector:
+
+#             size:medium
 
       dnsConfig:
+
         searches:
+
           - ecgc.svc.cluster.local
-          - ecgcbackend.svc.cluster.local
-```
+
+          - ecgcbackenderp.svc.cluster.local
 
 ## Create HPA
 
