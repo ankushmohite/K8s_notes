@@ -113,12 +113,12 @@ In Kubernetes, we use RollingUpdate. Kubernetes starts a new Pod with the new ap
 
 maxUnavailable: 0
 Simply means:
-    Kubernetes should keep all required Pods available until a new Pod is ready.
+Kubernetes should keep all required Pods available until a new Pod is ready.
 	
 	
 maxSurge: 1
 Simply means:
-    Kubernetes is allowed to create 1 extra Pod during deployment.
+Kubernetes is allowed to create 1 extra Pod during deployment.
 	
 Simple example:
 
