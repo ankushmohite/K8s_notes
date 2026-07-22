@@ -106,8 +106,8 @@ and reaches that backend service.
 
 
 
-##What is RollingUpdate in Kubernetes?
-##How do you achieve zero downtime deployment in Kubernetes?
+## What is RollingUpdate in Kubernetes?
+## How do you achieve zero downtime deployment in Kubernetes?
 
 In Kubernetes, we use RollingUpdate. Kubernetes starts a new Pod with the new application version. Once the new Pod is ready, Kubernetes removes an old Pod. It repeats this process until all old Pods are replaced.
 
