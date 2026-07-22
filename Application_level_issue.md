@@ -79,4 +79,27 @@ when you cordan a node, kubernetes stop scheduling a new pods on that node but e
 ```bash
 kubectl cordon node_name
 ```
+## how does FE know which BE to call?
+
+Frontend communicates with backend using the backend Service name and port. Service forwards the API request to one of the backend Pods.
+
+When FE sends a request:
+
+http://erp-ecib-uw-be:11075/api/login
+
+Kubernetes DNS sees:
+
+erp-ecib-uw-be
+
+and because of:
+
+searches:
+
+* ecgcbackenderp.svc.cluster.local
+
+it automatically looks for:
+
+erp-ecib-uw-be.ecgcbackenderp.svc.cluster.local
+
+and reaches that backend service.
 
