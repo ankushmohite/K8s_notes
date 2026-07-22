@@ -103,3 +103,36 @@ erp-ecib-uw-be.ecgcbackenderp.svc.cluster.local
 
 and reaches that backend service.
 
+
+
+
+##What is RollingUpdate in Kubernetes?
+##How do you achieve zero downtime deployment in Kubernetes?
+
+In Kubernetes, we use RollingUpdate. Kubernetes starts a new Pod with the new application version. Once the new Pod is ready, Kubernetes removes an old Pod. It repeats this process until all old Pods are replaced.
+
+maxUnavailable: 0
+Simply means:
+    Kubernetes should keep all required Pods available until a new Pod is ready.
+	
+	
+maxSurge: 1
+Simply means:
+    Kubernetes is allowed to create 1 extra Pod during deployment.
+	
+Simple example:
+
+Pod-1 → V1 ✅
+Pod-2 → V1 ✅
+Pod-3 → V1 ✅
+Pod-4 → V2 ✅ Ready
+
+Then Kubernetes can remove one old Pod:
+Pod-1 → V1 ✅
+Pod-2 → V1 ✅
+Pod-4 → V2 ✅
+
+It continues until:
+Pod-4 → V2 ✅
+Pod-5 → V2 ✅
+Pod-6 → V2 ✅
