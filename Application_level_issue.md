@@ -83,6 +83,11 @@ kubectl cordon node_name
 
 Frontend communicates with backend using kubernetes Service name and port. Service forwards the API request to one of the backend Pods.
 
+dnsConfig:
+  searches:
+    - ecgc.svc.cluster.local
+    - ecgcbackenderp.svc.cluster.local
+
 When FE sends a request:
 
 http://erp-ecib-uw-be:11075/api/login
@@ -102,6 +107,8 @@ it automatically looks for:
 erp-ecib-uw-be.ecgcbackenderp.svc.cluster.local
 
 and reaches that backend service.
+
+
 
 
 
