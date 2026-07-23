@@ -136,3 +136,13 @@ It continues until:
 Pod-4 → V2 ✅
 Pod-5 → V2 ✅
 Pod-6 → V2 ✅
+
+
+# Pod is Working but Application is Not Working?
+
+1. Verify Pod status by using `kubectl get pod` and check the restart count.
+   After that, we can check the events of that Pod by using `kubectl describe pod`.
+
+2. We can check application-level logs. Sometimes there may be a database connection failure or a missing environment variable.
+
+3. Verify the Service port, labels, and selectors. Also verify the Pod CPU and Memory utilization.
