@@ -138,6 +138,7 @@ Pod-5 → V2 ✅
 Pod-6 → V2 ✅
 
 
+
 # Pod is Working but Application is Not Working?
 
 1. Verify Pod status by using `kubectl get pod` and check the restart count.
