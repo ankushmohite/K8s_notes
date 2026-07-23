@@ -81,7 +81,7 @@ kubectl cordon node_name
 ```
 ## how does FE know which BE to call?
 
-Frontend communicates with backend using the kubernetes Service name and port. Service forwards the API request to one of the backend Pods.
+Frontend communicates with backend using kubernetes Service name and port. Service forwards the API request to one of the backend Pods.
 
 When FE sends a request:
 
