@@ -15,7 +15,7 @@ kubectl get deployment -n ecgcfrontend neia-ecgc-fe -o yaml
 
 kubectl get deployment -n ecgcbackend neia-dms-be -o yaml | grep dms
 
-## Restart the pods..
+## How to restart the pods.
 
 kubectl edit deployment neia-ecgc-fe -n ecgcfrontend
 
