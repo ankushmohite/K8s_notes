@@ -158,3 +158,13 @@ Pod-6 → V2 ✅
 2. We can check application-level logs. Sometimes there may be a database connection failure or a missing environment variable.
 
 3. Verify the Service port, labels, and selectors. Also verify the Pod CPU and Memory utilization.
+
+## how pod to pod and pod to service communication.
+
+In Kubernetes, every Pod has its own IP address, so Pod-to-Pod communication can happen directly using Pod IPs through the network. But Pod IPs are temporary because it will change when Pod restarte.
+
+We use Kubernetes Services:
+
+## Pod-to-Service Communication.
+
+By using labels and selectors.
