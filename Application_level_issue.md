@@ -156,7 +156,7 @@ Pod-6 → V2 ✅
 1. Verify Pod status by using `kubectl get pod` and check the restart count.
    After that, we can check the events of that Pod by using `kubectl describe pod`.
 
-2. We can check application-level logs. Sometimes there may be a database connection failure or a missing environment variable.
+2. We can check application-level logs. Sometimes there might be a database connection failure or a missing configuration  changes.
 
 3. Verify the Service port, labels, and selectors. Also verify the Pod CPU and Memory utilization.
 
