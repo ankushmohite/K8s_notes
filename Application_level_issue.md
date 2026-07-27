@@ -120,7 +120,7 @@ In Kubernetes, we use RollingUpdate. Kubernetes starts a new Pod with the new ap
 
 maxUnavailable: 0
 Simply means:
-    Kubernetes keep all required Pods available until a new Pod is ready.
+    Kubernetes keep required Pods available until a new Pod is ready.
 	
 	
 maxSurge: 1
