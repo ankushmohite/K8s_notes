@@ -127,7 +127,8 @@ maxSurge: 1
 Simply means:
     Kubernetes is allowed to create 1 extra Pod during deployment.
 
-maxUnavailable: 1 means Kubernetes allowed 1 Pod unavailable during the update.
+maxUnavailable: 1 means:
+    Kubernetes allowed 1 Pod unavailable during the update.
 	
 ## Simple example:
 
