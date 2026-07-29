@@ -4,7 +4,7 @@
 
 HPA allow you to automatically scaleup and scaledown the no. of pods depends on the **CPU** or **Memory** utilization.
 
-For example, if CPU utilization exceeds **70%**, HPA automatically increases the number of pods. When utilization decreases, HPA removes the extra pods.
+For example, if CPU utilization exceeds **Threshold value**, then HPA automatically increases the number of pods. When utilization decreases, HPA removes the extra pods.
 
 ---
 
