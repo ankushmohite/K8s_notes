@@ -1,6 +1,8 @@
 ## StorageClass:
 
 StorageClass defines what type of storage will provide to the application.
+
+
 For example, in an EKS cluster, I can create a StorageClass for AWS EBS gp3 volumes.
 Then i will create PVC, ater that Kubernetes checks the StorageClass and dynamically creates the required storage.
 So, we don't need to manually create a PV and EBS volume for every application.
