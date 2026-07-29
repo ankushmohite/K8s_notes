@@ -14,6 +14,16 @@ PV is the actual storage available to Kubernetes.
 
 PVC is a request for that storage made by a Pod.
 
+## Policy:
+
+1.Retain:
+Retain means if PVC is deleted, our actual storage and data remain safe.
+persistentVolumeReclaimPolicy: Retain
+
+2.Delete
+Delete means if PVC is deleted, Kubernetes also deletes the PV and underlying storage.
+persistentVolumeReclaimPolicy: Delete
+
 ## admin-setting-pv.yaml
 
 ```yaml
