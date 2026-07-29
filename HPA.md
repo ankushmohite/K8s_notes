@@ -54,7 +54,7 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 
 ## What is Metrics Server?
 
-Metrics Server is a Kubernetes component that collects CPU and Memory usage metrics from all nodes and pods in the cluster.
+Metrics Server is use to collect CPU and Memory  metrics from all nodes and pods in the cluster.
 
 HPA uses these metrics to automatically scale applications based on resource consumption.
 
