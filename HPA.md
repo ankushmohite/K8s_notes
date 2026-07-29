@@ -10,7 +10,8 @@ For example, if CPU utilization exceeds **Threshold value**, then HPA automatica
 
 ## How to Install HPA
 
-First, ensure that **Metrics Server** is installed because HPA requires metrics data to make scaling decisions.
+HPA use Metrics Server to collect pod CPU/Memory metrics for automatically scaling.
+
 
 Then, configure **CPU and Memory Requests and Limits** in the Deployment manifest.
 
