@@ -26,8 +26,10 @@ Get more add-ons
    ↓
 Amazon EBS CSI Driver
 
+
 Step:2 --> Create one StorageClass.
 
+```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -41,12 +43,9 @@ parameters:
 
 reclaimPolicy: Retain
 
-volumeBindingMode: WaitForFirstConsumer
+Step:3 --> Create PVC for Payment Service.
 
-allowVolumeExpansion: true
-
-Step:2 --> Create PVC for Payment Service.
-
+```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -62,3 +61,9 @@ spec:
   resources:
     requests:
       storage: 5Gi
+```
+
+
+volumeBindingMode: WaitForFirstConsumer
+
+allowVolumeExpansion: true
