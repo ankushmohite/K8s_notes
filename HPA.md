@@ -2,7 +2,7 @@
 
 ## What is HPA?
 
-**HPA (Horizontal Pod Autoscaler)** automatically increases or decreases the number of pods in a Kubernetes Deployment based on resource utilization such as **CPU** or **Memory**.
+**HPA allow you to automatically scaleup and scaledown the no. of pods depends on **CPU** and **Memory** utilization.
 
 For example, if CPU utilization exceeds **70%**, HPA automatically increases the number of pods. When utilization decreases, HPA removes the extra pods.
 
