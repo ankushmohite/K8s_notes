@@ -239,8 +239,7 @@ kubectl get hpa
 - HPA is recommended for high-traffic and resource-sensitive applications.
 - Not every service requires HPA.
 
-##########################################
-
+#################################
 # VPA (Vertical Pod Autoscaler)
 
 VPA (Vertical Pod Autoscaler) means Kubernetes automatically increases or decreases CPU and RAM for a Pod according to its requirement.
