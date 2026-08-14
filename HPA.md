@@ -243,3 +243,13 @@ kubectl get hpa
 # VPA (Vertical Pod Autoscaler)
 
 VPA (Vertical Pod Autoscaler) means Kubernetes automatically increases or decreases CPU and RAM for a Pod according to its requirement.
+
+
+
+####################################
+
+## In aws why everyone prefer Horizontal autoscaling?
+
+because it gives better scalability, availability, and fault tolerance.
+
+If one instance fails, other instances will continue serving traffic.
