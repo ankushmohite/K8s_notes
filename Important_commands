@@ -1,0 +1,361 @@
+# Free space in %age
+
+free | grep Mem | awk '{printf("Memory Usage: %.2f%\n", $3/$2 * 100.0)}'
+
+================================================
+
+ 
+
+# CPU usage as a percentage
+
+top -bn1 | grep "Cpu(s)" | awk '{print "CPU Usage: " 100 - $8 "%"}'
+
+================================================
+
+ 
+
+=VLOOKUP(A11,G:H,2,0)
+
+================================================
+
+# Use pg_archivecleanup (if you have WAL archiving):
+
+pg_archivecleanup /path/to/pg_wal <last_needed_wal_file>
+
+ 
+
+================================================
+
+# Clear PageCache only:
+
+sudo sync; echo 1 > /proc/sys/vm/drop_caches
+
+ 
+
+ 
+
+# Clear dentries and inodes:
+
+sudo sync; echo 2 > /proc/sys/vm/drop_caches
+
+ 
+
+ 
+
+# Clear PageCache, dentries, and inodes:
+
+sudo sync; echo 3 > /proc/sys/vm/drop_caches
+
+ 
+
+================================================
+
+#Find out exited containers
+
+crictl ps -a --state Exited
+
+ 
+
+================================================
+
+# Remove all exited containers with the following command:
+
+crictl rm $(crictl ps -a --state Exited -q)
+
+ 
+
+================================================
+
+# Docker images removal
+
+find /docker_data/images/docker/registry/v2/blobs/sha256/ -type f -mtime +30 -exec rm -f {} \;
+
+ 
+
+# Used to display the top 10 processes consuming the most memory on a Linux system
+
+ps aux --sort=-%mem | head -10
+
+ 
+
+================================================
+
+1.df -Th: Displays disk usage and filesystem types.
+
+2.crictl images: Lists all container images available in the runtime.
+
+3.crictl rmi --prune: Deletes all unused images to free up space.
+
+4.crictl ps -a --state=Exited: Lists all containers that have exited.
+
+5.crictl rm $(crictl ps -aq --state=Exited): Removes all exited containers.
+
+ 
+
+ 
+
+ 
+
+Alerts reslved –
+
+free -h
+
+echo 3 > /proc/sys/vm/drop_caches
+
+ps -aux --sort=-%mem | head -10
+
+check which directory consuming more - du -sh *    
+
+ 
+
+docker ps | grep -i erp-hrd-attleave-mgmt-fe
+
+docker images | grep -i erp-hrd-attleave-mgmt-fe
+
+docker rmi image name
+
+ 
+
+ 
+
+ 
+
+Command to restart pods.
+
+kubectl get all -A | grep -i erp-poluw-exp-mst-fe
+
+kubectl delete po erp-poluw-exp-mst-fe-5c5c5977f8-sv2s4 -n ecgcfrontend
+
+ 
+
+ 
+
+ 
+
+ 
+
+Preprod url : http://smile-stg.ecgcindia.com/
+
+Prod url -  : https://smile.ecgc.in
+
+ 
+
+ 
+
+ 
+
+PREPROD ELK.
+
+ 
+
+systemctl status kibana
+
+systemctl restart kibana
+
+systemctl status elasticsearch
+
+systemctl status logstash
+
+df -h will disk usages
+
+free -h
+
+echo 3 > /proc/sys/vm/drop_caches
+
+ 
+
+#####################################################################################
+
+ 
+
+ELK: to find out indices: run below command
+
+ 
+
+curl -X GET --user elastic:Rtz@3449! 'https://10.10.12.28:9200/_cat/indices?v' | grep logstash
+
+ 
+
+To delete indices: rum below command with indices number
+
+ 
+
+curl -X DELETE --user elastic:Rtz@3449! 'https://10.10.12.28:9200/logstash-2023.05.24-000005?pretty'
+
+ 
+
+##################################################################################################################################
+
+ 
+
+Biz Services stop cmd:
+
+ 
+
+cd /home/admin/biz_keycloak/keycloak-12.0.4/bin
+
+ 
+
+./jboss-cli.sh -c --controller=localhost:11090 command=:shutdown
+
+ 
+
+Biz Services start cmd:
+
+ 
+
+nohup ./standalone.sh -Djboss.socket.binding.port-offset=1100 -b=0.0.0.0 &
+
+ 
+
+Erp Services stop cmd:
+
+ 
+
+cd /home/admin/erp_keycloak/keycloak-12.0.4/bin
+
+ 
+
+./jboss-cli.sh -c --controller=localhost:10090 command=:shutdown
+
+ 
+
+Erp Services start cmd:
+
+ 
+
+nohup ./standalone.sh -Djboss.socket.binding.port-offset=100 -b=0.0.0.0 &
+
+ 
+
+##########################################################################################
+
+ 
+
+RabitMq Configuration changes
+
+ 
+
+Goto Admin --> Add Users --> Add Username and Password with Sys Configuration --> Then Click on Servic --> Virtual Host and Mention Prod then then Set Permission.
+
+ 
+
+ 
+
+#############################NEIA##################################################################################
+
+ 
+
+ 
+
+  349  ss -tunlp
+
+  350  histoty
+
+  351  history
+
+  352   systemctl status postgresql-13 / mongod
+
+  353   systemctl restart postgresql-13
+
+  354   systemctl status postgresql-13
+
+  355  systemctl status firewalld
+
+  356  systemctl stop firewalld
+
+  357  systemctl disable firewalld
+
+  358  history
+
+ 
+
+###########################################################################################################################
+
+ 
+
+ 
+
+For ERP means this site : https://smile.ecgc.in/
+
+ 
+
+cd /home/admin/keycloak/erp/keycloak-12.0.4/bin
+
+ 
+
+check ps -aux | grep java
+
+and use kill -9 for the process
+
+ 
+
+then make sure you are under bin directory, and run start command :
+
+nohup ./standalone.sh -Djboss.socket.binding.port-offset=100 -b=0.0.0.0  &
+
+ 
+
+for checking deployment status go to cd /home/admin/keycloak/erp/keycloak-12.0.4/standalone/deployments  and check war status as deployed.
+
+ 
+
+#####################################################################################################################################################
+
+ 
+
+For lence configuration.
+cat /etc/kubernetes/admin.conf
+
+kubectl get pods -A | grep reporting
+kubectl get node
+kubectl get node -o wide
+kubectl get ns
+kubectl get pods -n kube-system
+kubectl get deployment -n ecgcfrontend
+kubectl get deployment -n ecgcfrontend neia-ecgc-fe -o yaml
+kubectl get deployment -n ecgcbackend neia-dms-be -o yaml | grep dms
+
+Restart the pods..
+
+kubectl edit deployment neia-ecgc-fe -n ecgcfrontend
+kubectl rollout restart deployment neia-ecgc-fe -n ecgcfrontend
+kubectl logs -n ecgcbackend neia-dms-be-996d89df9-5kmhz
+kubectl get svc,endpoints -n ecgcbackend
+kubectl describe pod neia-dms-be-996d89df9-5kmhz -n ecgcbackend
+kubectl get node -o wide | grep
+kubectl describe node mdcuatnkek8s02
+
+ 
+
+ 
+
+ 
+
+################################################################################################################################################
+
+ 
+
+du -sh /var/lib/docker/*
+Deleted docker container logs
+truncate -s 0 /var/lib/docker/containers/*/*.log
+
+ 
+scp admin@10.189.8.134:/home/admin/linuxserver.txt .
+scp testfile.txt admin@10.189.8.134:/home/admin
+
+ 
+
+ 
+
+sudo mv /tmp/containerd-backup.tar.gz /home/admin/
+sudo mv /tmp/conntrack.tar.gz /home/admin/
+sudo cp /home/admin/k8s-node-binaries.tar.gz /tmp         
+
+
+sudo cp /usr/bin/crictl /home/admin/
+sudo mv /home/admin/crictl /tmp   
+
+ 
+
+scp /home/admin/conntrack.tar.gz admin@172.16.34.33:/home/admin/
