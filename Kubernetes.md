@@ -66,8 +66,9 @@ Selectors are used to find Pods based on their labels.
 Deployment is used to deploy and manage your applications. It will creates and manages ReplicaSets and also supports rolling updates and rollbacks.
 
 ## ReplicaSet
-
-ReplicaSet ensures that the required number of Pods are always running. If a Pod is deleted, a new Pod is automatically created to maintain the desired number of replicas. ReplicaSet also provides an advanced version of labels and selectors called **Set-Based Selectors**, which can match multiple values using different operators.
+ReplicaSet ensure that, the number of replicas that we have mention in yaml file always running.
+it will maintain desire number of replicas.
+ReplicaSet also provides an advanced version of labels and selectors called **Set-Based Selectors**, which can match multiple values using different operators.
 
 ## ReplicationController
 
