@@ -162,7 +162,7 @@ Pod-6 → V2 ✅
 
 ## how pod to pod and pod to service communication.
 
-In Kubernetes, every Pod has its own IP address, so Pod-to-Pod communication can happen directly using Pod IPs through the network. But Pod IP is temporary.
+In Kubernetes, every Pod has its own IP address, so Pod-to-Pod communication will happen directly using Pod IPs through the network. But Pod IP is temporary.
 pod IP will get change, if the pod restarted.
 We use Kubernetes Services:
 
