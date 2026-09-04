@@ -18,8 +18,9 @@ we map the Role to users, service accounts.
 
 ## Difference Between Role, RoleBinding, ClusterRole and ClusterRoleBinding
 
-If we want to give access only within a specific namespace, we use Role and RoleBinding.
-If we want to give access across all namespaces in the cluster, we use ClusterRole and ClusterRoleBinding.
+--> If we want to give access only within a specific namespace, we use Role and RoleBinding.
+
+--> If we want to give access across all namespaces in the cluster, we use ClusterRole and ClusterRoleBinding.
 
 ## Allow access to Pods and Services
 
