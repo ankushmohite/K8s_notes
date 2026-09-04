@@ -16,6 +16,11 @@ In RBAC, we define Role or ClusterRole & RoleBinding or ClusterRoleBinding.
 In role, we configure Which resources & What actions they can perform & in RoleBinding
 we map the Role to users, service accounts.
 
+## Difference Between Role, RoleBinding, ClusterRole and ClusterRoleBinding
+
+If we want to give access only within a specific namespace, we use Role and RoleBinding.
+If we want to give access across all namespaces in the cluster, we use ClusterRole and ClusterRoleBinding.
+
 ## Allow access to Pods and Services
 
 Permissions: apiGroups: [""]
@@ -54,6 +59,8 @@ rules:
 
 kubectl apply -f role.yaml
 
+
+
 ## Create a RoleBinding
 
 apiVersion: rbac.authorization.k8s.io/v1
@@ -71,11 +78,11 @@ roleRef:
   name: developer-role
   apiGroup: rbac.authorization.k8s.io
 
-## Cluster-Wide Access
+########################### Cluster-Wide Access ############################
 
 If you want access across all namespaces, use ClusterRole and ClusterRoleBinding.
 
-## ClusterRole
+######################## ClusterRole #####################################
 
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -87,9 +94,8 @@ rules:
   resources: ["pods"]
   verbs: ["get","list","watch"]
 
-## ClusterRoleBinding
+######################### ClusterRoleBinding #########################
 
-## Create a RoleBinding
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -107,13 +113,8 @@ roleRef:
   name: developer-role
   apiGroup: rbac.authorization.k8s.io
 
-## Difference Between Role, RoleBinding, ClusterRole and ClusterRoleBinding
 
-If we want to give access only within a specific namespace, we use Role and RoleBinding.
-
-If we want to give access across all namespaces in the cluster, we use ClusterRole and ClusterRoleBinding.
-
-## Create a Service Account
+####################### Create a Service Account #####################
 
 apiVersion: v1
 kind: ServiceAccount
