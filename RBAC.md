@@ -32,8 +32,11 @@ Permissions: apiGroups: ["apps"]
 - List --> View all deployments
 - Watch --> Monitor deployment changes
 
+# Kubernetes RBAC
+
 ## Create a Role
 
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -42,12 +45,12 @@ metadata:
 
 rules:
 - apiGroups: [""]
-  resources: ["pods","services"]
-  verbs: ["get","list","watch"]
+  resources: ["pods", "services"]
+  verbs: ["get", "list", "watch"]
 
 - apiGroups: ["apps"]
   resources: ["deployments"]
-  verbs: ["get","list","watch"]
+  verbs: ["get", "list", "watch"]
 
 kubectl apply -f role.yaml
 
@@ -86,18 +89,22 @@ rules:
 
 ## ClusterRoleBinding
 
+## Create a RoleBinding
+
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
+kind: RoleBinding
 metadata:
-  name: readonly-binding
+  name: developer-binding
+  namespace: ecgcbackend
 
 subjects:
 - kind: User
   name: developer1
 
 roleRef:
-  kind: ClusterRole
-  name: readonly-role
+  kind: Role
+  name: developer-role
   apiGroup: rbac.authorization.k8s.io
 
 ## Difference Between Role, RoleBinding, ClusterRole and ClusterRoleBinding
