@@ -105,3 +105,41 @@ kubectl scale deployment --replicas=3
 ```
 
 It increases or decreases the number of Pods.
+
+
+
+
+# GitOps and Argo CD Interview Questions
+
+## 1. What is GitOps and how does it work?
+
+GitOps is a deployment approach where Git is used as the single source of truth for Kubernetes configuration. Any change is first made in Git, and a tool like Argo CD detects the change and applies it to the Kubernetes cluster.
+
+---
+
+## 2. What is Argo CD and how does it work?
+
+Argo CD is a GitOps continuous delivery tool for Kubernetes. It continuously monitors the Git repository and compares the configuration in Git with the Kubernetes cluster. If there is a difference, Argo CD can sync the changes and bring the cluster to the desired stat
+
+---
+
+## 3. Explain your Jenkins + Argo CD workflow.
+
+This is very important because the interviewer may ask about your real project.
+
+In our project, Jenkins is mainly used for CI. Developer pushes code to Git, Jenkins builds and tests the application and creates a Docker image. The image is pushed to the container registry. Then the Kubernetes manifest is updated with the new image version and committed to Git. Argo CD monitors the manifest repository and detects the change. It then syncs the manifest with the Kubernetes cluster and deploys the new version.
+
+### Workflow
+
+```text
+Developer
+   ↓
+  Git
+   ↓
+Jenkins → Build/Test → Docker Image → Registry
+   ↓
+Manifest Update → Git
+   ↓
+Argo CD
+   ↓
+Kubernetes
