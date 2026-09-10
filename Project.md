@@ -28,58 +28,80 @@ Application
 
 
 ## DevOps Interview Q&A — ECGC Smile Project
-🔹 Kubernetes
-1. What is Kubernetes?
+
+# Kubernetes
+
+## 1. What is Kubernetes?
 
 Kubernetes is a container orchestration tool. We use it to deploy and manage applications running in containers.
 
-2. What is a Pod?
+## 2. What is a Pod?
 
 A Pod is the smallest deployable unit in Kubernetes. Our application container runs inside a Pod.
 
-3. What is a Deployment?
+## 3. What is a Deployment?
 
 Deployment manages Pods and maintains the required number of replicas. It also helps with rolling updates.
 
-4. What is a Service?
+## 4. What is a Service?
 
 A Service provides a stable way to access Pods.
 
-7. How do you troubleshoot a failed Pod?
+## 5. How do you troubleshoot a failed Pod?
 
 First, I check the Pod status, then describe the Pod and check the logs.
 
+```bash
 kubectl get pods
-kubectl describe pod <pod-name>
-kubectl logs <pod-name>
-8. What is CrashLoopBackOff?
+kubectl describe pod
+kubectl logs
+```
+
+## 6. What is CrashLoopBackOff?
 
 It means the container is repeatedly starting and crashing.
 
-9. What is ImagePullBackOff?
+## 7. What is ImagePullBackOff?
 
 It means Kubernetes is unable to pull the Docker image from the registry.
 
-10. Scenario: Pod is in ImagePullBackOff. What will you check?
+## 8. Scenario: Pod is in ImagePullBackOff. What will you check?
 
 I check the image name, tag, registry, credentials, and Pod events.
 
-11. Scenario: Pod is in CrashLoopBackOff. What will you do?
+## 9. Scenario: Pod is in CrashLoopBackOff. What will you do?
 
 I check the application logs and Pod events. Then I check configuration, environment variables, dependencies, and resource issues.
 
-kubectl logs <pod-name>
-kubectl describe pod <pod-name>
-12. Scenario: Application is running, but users cannot access it. What will you check?
+```bash
+kubectl logs
+kubectl describe pod
+```
+
+## 10. Scenario: Application is running, but users cannot access it. What will you check?
 
 I check the Pod, Service, Ingress, and application logs.
 
+```text
 Pod → Service → Ingress → Application
-13. How do you check Kubernetes resources?
+```
+
+## 11. How do you check Kubernetes resources?
+
+```bash
 kubectl get all
-14. How do you check Pod events?
-kubectl describe pod <pod-name>
-15. How do you scale a Deployment?
-kubectl scale deployment <deployment-name> --replicas=3
+```
+
+## 12. How do you check Pod events?
+
+```bash
+kubectl describe pod
+```
+
+## 13. How do you scale a Deployment?
+
+```bash
+kubectl scale deployment --replicas=3
+```
 
 It increases or decreases the number of Pods.
