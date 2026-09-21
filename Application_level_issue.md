@@ -169,3 +169,55 @@ We use Kubernetes Services:
 ## Pod-to-Service Communication.
 
 By using labels and selectors.
+
+
+
+
+
+
+
+
+
+# 1. How to reduce the size of docker image?
+
+Trying to use lightweight base images like alpine or distroless images.
+Second appproch is create multistage Dockerfile, like first stage is to build the application and second stage is to copy the build into the second stage and run it with the help of runtime.
+
+# 2. When you create a pod how does request flow in your k8s archecture?
+
+When I create a Pod using `kubectl`, the request first goes to the **API Server**.
+
+The API Server **authenticates and authorizes** the request and stores the Pod information in **etcd**.
+
+Then **Scheduler selects a suitable worker node**. then Kubelet receives the Pod request and with the help of container runtime ( containerd, dockerd) will creates the Pod and its containers.
+**In simple flow:**
+
+`kubectl → API Server → etcd → Scheduler → Kubelet → Container Runtime → Pod`
+
+# 3. Explain one  critical production issue you handel?
+
+One critical production issue I handled was a **502 Bad Gateway error** after a recent deployment.
+
+First, I checked the **ALB** and found that the target was unhealthy. Then I checked the **Ingress** configuration, and there was no issue.
+
+After that, I checked the **pods**, and all pods were running healthy. The Ingress Controller was also working fine.
+
+Then I checked the **Kubernetes Service** and found a **mismatch between the Service selector and Pod labels**. Because of this, the Service was not able to discover the pods.
+
+I corrected the Service selector labels, and the Service started routing traffic to the pods. The ALB targets became healthy, and the **502 error was resolved**.
+
+So, the root cause was a **label mismatch between the Service and Pods**.
+
+and users were able to access the application successfully.
+
+# 4. If some of the service will take high memory consumption.
+
+Whenever memory of any pods get increases instantly, we just check whether it ts a memory leak or not. If required, we restart the service as a temporary solution and then look for the permanent fix.
+
+so by setting with the developer we will check wheter it is any memory leak or any other issue with the application.
+
+In one case, our **Java Spring Boot application** was consuming high memory because it was fetching the **entire database table** instead of fetching data in smaller batches.
+
+So I worked with the **development team**, and they implemented **pagination** so that the application fetches data page by page.
+
+After this change, the **memory consumption was reduced and the issue was resolved**.
