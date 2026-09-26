@@ -11,7 +11,7 @@ We use Prometheus and Grafana for monitoring the Kubernetes cluster and applicat
 
 # The Request Flow in Kubernetes.
 
-When user try to visit your webpage, it first comes to the Load Balancer. The Load Balancer forwards the request to the Ingress. Ingress routes the request to the appropriate Service. The Service forwards the request to one of the available Pods, and the application inside the Pod processes the request and sends the response back.
+When user try to visit your webpage, it first comes to the Load Balancer. The Load Balancer forwards the request to the Ingress. Ingress routes the request to the appropriate Service. Then Service forwards the request to one of the available Pods, and the application inside the Pod processes the request and sends the response back.
 
 User
  ↓
