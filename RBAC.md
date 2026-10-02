@@ -5,7 +5,7 @@
 Role --> Which resource & What action.
 RoleBinding --> Role (pod resource) & whom user (developer1).
 
-RBAC stands for Role-Based Access Control used to control who can access cluster resources and what actions they can perform.
+RBAC stands for Role-Based Access Control it's used to control who can access cluster resources and what actions they can perform.
 
 If any requirement comes from development side, they want to view the access of pods and deployments.
 
