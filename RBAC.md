@@ -13,7 +13,7 @@ So, we use RBAC.
 
 In RBAC, we define Role or ClusterRole & RoleBinding or ClusterRoleBinding.
 
-In role, we configure Which resources & What actions they can perform & in RoleBinding
+In role, which resources & What actions they can perform & in RoleBinding
 we map the Role to users, service accounts.
 
 ## Difference Between Role, RoleBinding, ClusterRole and ClusterRoleBinding
