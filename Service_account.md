@@ -2,7 +2,7 @@
 
 ## What is a Service Account?
 
-A Service Account is a Kubernetes identity used by applications, pods, or automation tools to communicate with the Kubernetes API Server.
+A Service Account is an identity that allows users to access Kubernetes cluster.
 
 In our ECGC project, we configured Lens access using a Service Account. We created a Service Account, assigned required permissions through RBAC, then generated a token, and added that token to a kubeconfig file. Then we imported the kubeconfig file into Lens, so users could securely access the Kubernetes cluster without sharing admin credentials.
 
