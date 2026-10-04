@@ -3,6 +3,7 @@
 Readiness checks whether the application is ready to receive traffic.
 
 If Ready → Kubernetes sends traffic to the pod.
+
 If Not Ready → Kubernetes stops sending traffic to the pod.
 
 initialDelaySeconds: 30
@@ -19,6 +20,7 @@ If the readiness endpoint fails 3 consecutive times, the pod becomes NotReady an
 Liveness checks whether the application is still running properly.
 
 If Alive → Kubernetes keeps the pod running.
+
 If Not Alive → Kubernetes restarts the container.
 
 initialDelaySeconds: 60
