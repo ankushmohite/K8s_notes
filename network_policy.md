@@ -2,7 +2,7 @@
 
 ## What is Network Policy in Kubernetes?
 
-Basically, Network Policy is used to control pod-to-pod and namespace-to-namespace communication.
+Network Policy is used to control pod-to-pod and namespace-to-namespace communication.
 
 By default, every pod can communicate with every other pod in the cluster. So, network Policies help to restrict that communication and allow only the required traffic.
 
