@@ -6,7 +6,7 @@ Network Policy is used to control pod-to-pod and namespace-to-namespace communic
 
 By default, every pod can communicate with every other pod in the cluster. So, network Policies help to restrict that communication and allow only the required traffic.
 
-We use Network Policies to improve security and provide traffic isolation by controlling which pods or namespaces can send or receive traffic.
+We use Network Policies to improve security and provide traffic isolation.
 
 ## Real-Time Example
 
