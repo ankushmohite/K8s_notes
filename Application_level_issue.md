@@ -81,34 +81,19 @@ kubectl cordon node_name
 ```
 ## how does FE know which BE to call?
 
-Frontend communicates with backend using kubernetes Service name and port. Service forwards the API request to one of the backend Pods.
+In our ECGC Smile project, **Frontend and Backend are in different namespaces**.
 
+Frontend communicates with Backend using the **Kubernetes Service name and port**. The Service receives the API request and forwards it to one of the Backend Pods.
+
+Since Frontend and Backend are in different namespaces, we configure **`dnsConfig` in the manifest file** to help with DNS resolution between the namespaces.
+
+For example:
+```yaml
 dnsConfig:
   searches:
     - ecgc.svc.cluster.local
     - ecgcbackenderp.svc.cluster.local
-
-When FE sends a request:
-
-http://erp-ecib-uw-be:11075/api/login
-
-Kubernetes DNS sees:
-
-erp-ecib-uw-be
-
-and because of:
-
-searches:
-
-* ecgcbackenderp.svc.cluster.local
-
-it automatically looks for:
-
-erp-ecib-uw-be.ecgcbackenderp.svc.cluster.local
-
-and reaches that backend service.
-
-
+```
 
 
 
