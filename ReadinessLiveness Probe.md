@@ -2,6 +2,8 @@
 
 Readiness checks whether the application is ready to receive traffic.
 
+If ready Kubernetes sends traffic to the pod otherwise stops sending traffic to the pod.
+
 If Ready → Kubernetes sends traffic to the pod.
 
 If Not Ready → Kubernetes stops sending traffic to the pod.
