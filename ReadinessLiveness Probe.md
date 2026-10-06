@@ -19,7 +19,7 @@ If the readiness endpoint fails 3 consecutive times, the pod becomes NotReady an
 
 Liveness checks whether the application is still running properly.
 
-Kubernetes keeps the pod running otherwise restarts the container.
+If alive Kubernetes keeps the pod running otherwise restarts the container.
 
 If Alive → Kubernetes keeps the pod running.
 
