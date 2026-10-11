@@ -83,9 +83,9 @@ kubectl cordon node_name
 
 In our ECGC Smile project, **Frontend and Backend are in different namespaces**.
 
-Frontend communicates with Backend using the **Kubernetes Service name and port**. The Service receives the API request and forwards it to one of the Backend Pods.
+Frontend communicates with Backend using the **Kubernetes Service name and port**. The Service forwards API request to one of the Backend Pods.
 
-Since Frontend and Backend are in different namespaces, we configure **`dnsConfig` in the manifest file** to help with DNS resolution between the namespaces.
+Since Frontend and Backend are in different namespaces, we configure **`dnsConfig` in the manifest file** that help DNS resolution between the namespaces.
 
 For example:
 ```yaml
