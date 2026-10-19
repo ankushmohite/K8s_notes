@@ -1,0 +1,132 @@
+Current Configurations
+VM No
+Tools
+vCPU
+RAM
+Disk Space
+1
+Jenkins Master
+4
+32 GB
+350 GB
+2
+Jenkins Slave -1
+4
+8 GB
+100 GB
+3
+Jenkins Slave -2
+4
+8 GB
+100 GB
+4
+Gitlab
+4
+8 GB
+300 GB
+5
+SonarQube coverage
+2
+4 GB
+100 GB
+6
+SonarQube security
+4
+8 GB
+50 GB
+7
+Docker registry
+2
+4 GB
+370 GB
+8
+Nexus
+2
+4 GB
+50 GB
+9
+ELK
+4
+16 GB
+250 GB
+10
+Gitlab (for yaml)
+2
+4 GB
+50 GB
+11
+KeyClock
+4
+8 GB
+100 GB
+12
+RabbitMQ
+1
+8 GB
+30 GB
+13
+DB
+ 
+ 
+ 
+Kubernetes Cluster
+14
+k8s master 1
+8
+8 GB
+50 GB
+15
+k8s master 2
+8
+8 GB
+50 GB
+16
+k8s master 3
+8
+8 GB
+50 GB
+17
+envoy Master
+2
+2 GB
+50 GB
+18
+envoy Client
+2
+2 GB
+50 GB
+19
+worker 0
+8
+32 GB
+275 GB
+20
+worker 1
+8
+32 GB
+150 GB
+21
+worker 2
+8
+16 GB
+130 GB
+22
+worker 3
+8
+16 GB
+150 GB
+23
+worker 4
+8
+32 GB
+200 GB
+24
+worker 5
+8
+16 GB
+150 GB
+25
+worker 6
+8
+32 GB
+200 GB
