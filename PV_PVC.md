@@ -1,10 +1,9 @@
 ## PV & PVC.
 
-In Kubernetes, PV (Persistent Volume) and PVC (Persistent Volume Claim) are used to store application data permanently, Even if a Pod restarted, the data stored in the PV remains safe.
+In Kubernetes, PV (Persistent Volume) and PVC (Persistent Volume Claim) are used to store application data permanently, Even if a Pod restarted, the data remains safe. the data will be stored outside the Pod
 
 Without using PV/PVC, Pod stores its data inside the container. If the Pod recreated the data will be loss, because it is a temporary storage.
 
-With PV/PVC, the data will be stored outside the Pod on a separate storage.
 
 ## Persistent Volume:
 
