@@ -1,0 +1,110 @@
+[root@MDCUATDD01 ssl]# pwd
+
+/etc/nginx/ssl
+
+[root@MDCUATDD01 ssl]# ls
+
+ecgcltd.crt  private.key  privatelendingagency.key  ssl_ecgcltd  Wildcard.crt
+
+
+
+
+[root@MDCUATDD01 conf.d]# cat reverse-proxy.conf
+
+server {
+
+    listen 80;
+
+    server_name uat-neia.ecgc.in;
+
+ 
+
+    # Redirect all HTTP to HTTPS
+
+    return 301 https://$host$request_uri;
+
+}
+
+ 
+
+server {
+
+    listen 443 ssl;
+
+    server_name uat-neia.ecgc.in;
+
+ 
+
+    ssl_certificate /etc/nginx/ssl/ecgcltd.crt;
+
+    ssl_certificate_key /etc/nginx/ssl/private.key;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    ssl_prefer_server_ciphers on;
+
+ 
+
+    # Admin app
+
+    location /admin/ {
+
+        proxy_pass http://10.10.14.11:8092/admin/;
+
+        proxy_set_header Host $host;
+
+        proxy_set_header X-Real-IP $remote_addr;
+
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+    }
+
+ 
+
+    # ECGC app
+
+    location /ecgc/ {
+
+        proxy_pass http://10.10.14.11:8090/ecgc/;
+
+        proxy_set_header Host $host;
+
+        proxy_set_header X-Real-IP $remote_addr;
+
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+    }
+
+ 
+
+    # Lending Agency app (main URL without showing :9090)
+
+    location /lendingagency/ {
+
+        proxy_pass http://10.10.14.11:9090/lendingagency/;
+
+        proxy_set_header Host $host;
+
+        proxy_set_header X-Real-IP $remote_addr;
+
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+    }
+
+ 
+
+    # Redirect root domain to /lendingagency/login
+
+    location = / {
+
+        return 302 /lendingagency/login;
+
+    }
+
+}
