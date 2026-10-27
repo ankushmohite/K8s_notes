@@ -1,11 +1,8 @@
 [root@MDCUATDD01 ssl]# pwd
-
 /etc/nginx/ssl
 
 [root@MDCUATDD01 ssl]# ls
-
 ecgcltd.crt  private.key  privatelendingagency.key  ssl_ecgcltd  Wildcard.crt
-
 
 
 
@@ -17,15 +14,10 @@ server {
 
     server_name uat-neia.ecgc.in;
 
- 
-
     # Redirect all HTTP to HTTPS
-
     return 301 https://$host$request_uri;
 
 }
-
- 
 
 server {
 
@@ -33,48 +25,31 @@ server {
 
     server_name uat-neia.ecgc.in;
 
- 
-
     ssl_certificate /etc/nginx/ssl/ecgcltd.crt;
-
     ssl_certificate_key /etc/nginx/ssl/private.key;
-
     ssl_protocols TLSv1.2 TLSv1.3;
-
     ssl_prefer_server_ciphers on;
 
- 
 
     # Admin app
 
     location /admin/ {
-
         proxy_pass http://10.10.14.11:8092/admin/;
-
         proxy_set_header Host $host;
-
         proxy_set_header X-Real-IP $remote_addr;
-
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-
         proxy_set_header X-Forwarded-Proto $scheme;
 
     }
 
  
-
     # ECGC app
 
     location /ecgc/ {
-
         proxy_pass http://10.10.14.11:8090/ecgc/;
-
         proxy_set_header Host $host;
-
         proxy_set_header X-Real-IP $remote_addr;
-
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-
         proxy_set_header X-Forwarded-Proto $scheme;
 
     }
@@ -84,15 +59,10 @@ server {
     # Lending Agency app (main URL without showing :9090)
 
     location /lendingagency/ {
-
         proxy_pass http://10.10.14.11:9090/lendingagency/;
-
         proxy_set_header Host $host;
-
         proxy_set_header X-Real-IP $remote_addr;
-
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-
         proxy_set_header X-Forwarded-Proto $scheme;
 
     }
@@ -102,9 +72,22 @@ server {
     # Redirect root domain to /lendingagency/login
 
     location = / {
-
         return 302 /lendingagency/login;
 
     }
 
 }
+
+docker run -d --name neia-ecgc-api-gateway --network neia-bridge-network -p 8765:8765 -e TZ=Asia/Kolkata -e spring.profiles.active=sit docker-neia.ecgcindia.com:443/neia-ecgc-api-gateway.jar:R1.0.0_77
+
+sleep 5
+docker run -d --name neia-user-auth-service --network neia-bridge-network -p 9098:9098 -e TZ=Asia/Kolkata -e spring.profiles.active=sit docker-neia.ecgcindia.com:443/neia-user-auth-service.jar:R1.0.0_112
+
+sleep 5
+docker run -d --name admin-setting-be --network neia-bridge-network -p 8091:8091 -e TZ=Asia/Kolkata -e spring.profiles.active=sit docker-neia.ecgcindia.com:443/admin-setting-be.jar:R1.0.0_283
+
+sleep 5
+docker run -d --name admin-setting-fe --network neia-bridge-network -p 8092:8092 -e TZ=Asia/Kolkata -e spring.profiles.active=sit docker-neia.ecgcindia.com:443/admin-setting-fe.jar:R1.0.0_133
+
+sleep 5
+docker run -d --name neia-ecgc-be --network neia-bridge-network -p 8089:8089 -e TZ=Asia/Kolkata -e spring.profiles.active=sit docker-neia.ecgcindia.com:443/neia-ecgc-be.jar:R1.0.1_184
