@@ -1,6 +1,7 @@
 #DaemonSet
 
 DaemonSet ensure that a copy of a pod run on every node in cluster.
+
 suppose we have 10 node in kubernetes cluster and i want node Exporter on every node for cluster monitoring, insteat of creating 10 separate pods manually, we will create one DaemonSet, so Kubernetes automatically run one Node Exporter pod on each node.
 
 
