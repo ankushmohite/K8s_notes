@@ -6,9 +6,9 @@ suppose we have 10 node in kubernetes cluster and i want node Exporter on every 
 
 
 
-# Resource Quota
+# Resource Quota.
 
-Resource Quota is a Kubernetes object used to limit how much CPU, Memory, Storage, Pods, and other resources can be used within a namespace.
+ResourceQuota is used to limit how much CPU, memory, storage, and the number of Pods within a namespace.
 
 ```yaml
 apiVersion: v1
